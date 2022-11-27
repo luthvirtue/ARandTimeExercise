@@ -9,6 +9,7 @@ public class ScreenshotScript : MonoBehaviour
 {
     public Image pictureHolder;
     public TextMeshProUGUI locationText;
+    public GameObject buttonPanel;
 
     void Start()
     {
@@ -48,8 +49,8 @@ public class ScreenshotScript : MonoBehaviour
     //save to gallery
     public void CaptureScreenButton()
     {
+        buttonPanel.SetActive(false);
         StartCoroutine(CaptureIt());
-        TakeScreenshot();
     }
 
     private IEnumerator CaptureIt()
@@ -61,6 +62,7 @@ public class ScreenshotScript : MonoBehaviour
         ScreenCapture.CaptureScreenshot(savePath);
 
         yield return new WaitForEndOfFrame();
+        buttonPanel.SetActive(true);
     }
 
     //another attemp save to gallery
